@@ -1,47 +1,57 @@
 function addPlayer() {
-    const playerSection = document.getElementById('players-list')
+    const playersSection = document.getElementById('players-list')
 
     const h3 = document.createElement('h3')
-    h3.innerText = "Jogador:"
+    h3.innerText = "Jogador"
+    h3.id = 'h3'
 
     const ul = document.createElement('ul')
+    ul.id = 'ul'
 
-    const positionInput = document.getElementById('positionInput')
-    const nameInput = document.getElementById('nameInput')
-    const numberInput = document.getElementById('numberInput')
-
-    const positionLi = document.createElement('li')
-    positionLi.innerText = positionInput.value
+    const nameInput = document.getElementById('name')
+    const posistionInput = document.getElementById('position')
+    const numberInput = document.getElementById('number')
 
     const nameLi = document.createElement('li')
+    nameLi.id = 'nameLi'
     nameLi.innerText = nameInput.value
 
-    const numberLi = document.createElement('li')
-    numberLi.innerText = numberInput.value
-    ul.append(positionLi, nameLi, numberLi)
+    const positionLi = document.createElement('li')
+    positionLi.id = 'positionLi'
+    positionLi.innerText = posistionInput.value
 
+    const numberLi = document.createElement('li')
+    numberLi.id = 'numberLi'
+    numberLi.innerText = numberInput.value
+    ul.append(nameLi, positionLi, numberLi)
+    
     const check = confirm("Deseja confirmar a escalação do jogador?")
     if(check) {
-        playerSection.append(h3, ul)
-        document.getElementById('positionInput').value=''
-        document.getElementById('nameInput').value=''
-        document.getElementById('numberInput').value=''
+        playersSection.append(h3, ul)
+        document.getElementById('name').value=''
+        document.getElementById('position').value=''
+        document.getElementById('number').value=''
     } else {
-        alert("Operação cancelada.")
+        alert("Operação cancelada!")
     }
 }
 
 function removePlayer() {
-    const playerSection = document.getElementById('players-list')
-    const numberInputRemove = document.getElementById('numberInputRemove')
-    const numberInput = document.getElementById('numberInput')
-    
-    const titles = document.getElementsByName('h3')
-    const players = document.getElementsByName('ul')
+    const playersSection = document.getElementById('players-list')
+    const h3 = document.getElementById('h3')
+    const ul = document.getElementById('ul')
+    playersSection.append(h3, ul)
 
-    if(numberInputRemove.value == numberInput.value) {
-        alert("sucesso")
+    const numberLi = document.getElementById('numberLi')
+    const numberDelete = document.getElementById('numberDelete')
+    
+    const check = confirm("Deseja confirmar a remoção do jogador?")
+    if(numberLi.innerText === numberDelete.value && check) {
+        playersSection.removeChild(h3)
+        playersSection.removeChild(ul)
+
+        document.getElementById('numberDelete').value=''
     } else {
-        alert('os numeros nao coincidem')
+        alert("Operação cancelada!")
     }
 }
